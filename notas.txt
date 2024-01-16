@@ -20,3 +20,6 @@ cuando sea la primera vez que van a configurar el repositorio se usan
 
 git config --global user.name "nombre de usuario"
 git config --global user.email "email"
+
+
+git commit -m "commit"
