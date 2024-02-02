@@ -57,6 +57,39 @@ public class Funciones {
         listapersonas.add(alumno);
     }
 
+    //metodo para leer un archivo
+    private void leerAlumnos() throws Exception{
+        //definir donde esta el archivo que esta guardando la informacion
+        FileInputStream archivo = new FileInputStream("archivo.dat");
+        //generar la lectura de los objetos
+        ObjectInputStream entrada = new ObjectInputStream(archivo);
+        //tenemos que transformar los objetos porque por defecto su lectura en bytes por lo tanto debo castear a un objeto
+        listapersonas = (ArrayList)entrada.readObject();
+
+        for(int i = 0; i < listapersonas.size(); i++){
+            //recorro lo que necesito del objeto
+            Alumno obj = (Alumno)listapersonas.get(i);
+            //obtener la informacion
+            JOptionPane.showMessageDialog(null, "\n "
+            + "Numero de Alumno: " + (i+1) + "\n"
+            + "Boleta: " + obj.getBoleta() + "\n"
+            + "Nombre del Alumno: " + obj.getNombre() + "\n"
+            + "Edad del Alumno: " + obj.getEdad() + "\n"
+            + "Tipo de Persona : " + obj.tipoPersona() + "\n");
+        }
+
+        private void guardar() throw Exception{
+            //debo de generar el archivo de salida
+            FileOutputStream archivo = new FileOutputStream("archivo.dat");
+            //definimos que es un buffer de objetos
+            ObjectOutputStream salida = new ObjectOutputStream(archivo);
+            //empiezo a escribir
+            salida.writeObject(listapersonas);
+            salida.close();
+        }
+
+    }
+
 
 
 
